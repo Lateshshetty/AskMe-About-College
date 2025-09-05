@@ -8,11 +8,11 @@ app = FastAPI()
 
 storage_context = StorageContext.from_defaults(persist_dir="storage")
 
-# load with ollama embeddings
+
 embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 index = load_index_from_storage(storage_context, embed_model=embed_model)
 
-llm = Ollama(model="gemma2:2b")   # ✅ lightweight model for your RTX 3050
+llm = Ollama(model="gemma2:2b")  
 query_engine = index.as_query_engine(llm=llm)
 
 class QueryRequest(BaseModel):
